@@ -35,9 +35,7 @@ typedef struct {
     char *grid[ROWS][COLS];
 } Board;
 
-
 Board make_board() {
-
     Board board;
     for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {
@@ -45,9 +43,7 @@ Board make_board() {
         }
     }
     return board;
-
 }
-
 
 int place_disk(Board *board, char *disc, int col) {
     if (col < 0 || col >= COLS) {
@@ -103,14 +99,14 @@ int main() {
 
     char disc = *ptr_option2;
     int col = 5;
-    place_disk(&board, disc, 0);
-    place_disk(&board, disc, 0);
-    place_disk(&board, disc, 1);
-    place_disk(&board, disc, 2);
-    place_disk(&board, disc, 3);
-    place_disk(&board, disc, 3);
-    place_disk(&board, disc, 3);
-    place_disk(&board, disc, 3);
+    // place_disk(&board, disc, 0);
+    // place_disk(&board, disc, 0);
+    // place_disk(&board, disc, 1);
+    // place_disk(&board, disc, 2);
+    // place_disk(&board, disc, 3);
+    place_disk(&board, disc, 5);
+    place_disk(&board, disc, 5);
+    place_disk(&board, disc, 5);
     int row = place_disk(&board, disc, 5);
 
     if (row != -1) {
@@ -131,7 +127,7 @@ int main() {
             }
 
             if (row_count > 3) {
-                printf("4 op een rij Gevonden op positie (%d, %d)\n", disc_actual, i, j);
+                printf("5 op een rij Gevonden op positie (%d, %d)\n", disc_actual, i, j);
 
                 last_column_index = j;
             }
@@ -146,6 +142,35 @@ int main() {
 
             }
         }
+
+        int col_count = 0;
+        int last_row_index = -1;
+        int j = col;
+
+        // check 4 op een rij vertikaal
+        for (int i = row; i < ROWS; i++) {
+            char disc_actual= board.grid[i][j];
+
+            if (disc_actual == disc) {
+                printf("%d Gevonden op positie (%d, %d)\n", disc_actual, i, j);
+                col_count++;
+            } else {
+                col_count = 0;
+            }
+            if (col_count > 3) {
+                printf("4 op een rij Gevonden op positie (%d, %d)\n", disc_actual, i, j);
+
+                last_row_index = i;
+            }
+        }
+
+        // weghalen vertikale 4 op een rij
+        if (last_row_index != -1) {
+            for (int i = 0; i < 4; i++) {
+                weghalen_chip(&board, i, j);
+            }
+        }
+
 
     }
 
