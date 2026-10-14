@@ -99,14 +99,10 @@ int main() {
 
     char disc = *ptr_option2;
     int col = 5;
-    // place_disk(&board, disc, 0);
-    // place_disk(&board, disc, 0);
-    // place_disk(&board, disc, 1);
-    // place_disk(&board, disc, 2);
-    // place_disk(&board, disc, 3);
-    place_disk(&board, disc, 5);
-    place_disk(&board, disc, 5);
-    place_disk(&board, disc, 5);
+    place_disk(&board, disc, 0);
+    place_disk(&board, disc, 0);
+    place_disk(&board, disc, 1);
+    place_disk(&board, disc, 2);
     int row = place_disk(&board, disc, 5);
 
     if (row != -1) {
